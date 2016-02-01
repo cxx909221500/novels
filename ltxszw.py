@@ -45,7 +45,11 @@ def ltxszw_down_novel(novel_title,zhangjie):
     else:
         # print('开始写')
         file=open('{}/{}/{}.txt'.format(fenleiname,novel_title,zhangjie_title),'wb')
-        zhangjie_text=zhangjie_text.encode('utf-8')
+        zhangjie_text=zhangjie_text.split('\n')
+        tmp='';
+        for i in zhangjie_text:
+            tmp=tmp+i+'huanhang'
+        zhangjie_text=tmp.encode('utf-8')
         zhangjie_text=base64.b64encode(zhangjie_text)
         file.write(zhangjie_text)
         file.close()
