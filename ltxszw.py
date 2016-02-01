@@ -30,7 +30,7 @@ def ltxszw_down_novel(novel_title,zhangjie):
     zhangjie_soup=BeautifulSoup(zhangjie_data,'html.parser')
     zhangjie_text=zhangjie_soup.find('div',id="htmlContent",class_="contentbox")
     zhangjie_text=zhangjie_text.text
-    # zhangjie_text=zhangjie_text.replace('看原创成人小说，就上龙腾小说网！网址：http://www.7ey.net','')
+    zhangjie_text=zhangjie_text.replace('看原创成人小说，就上龙腾小说网！网址：http://www.7ey.net','')
     fenleiname=fenlei[str(fenlei_id)]
     if os.path.exists(fenleiname):
         pass
@@ -44,8 +44,9 @@ def ltxszw_down_novel(novel_title,zhangjie):
         pass
     else:
         # print('开始写')
-        file=open('{}/{}/{}.txt'.format(fenleiname,novel_title,zhangjie_title),'wb+',encoding='utf-8')
+        file=open('{}/{}/{}.txt'.format(fenleiname,novel_title,zhangjie_title),'wb')
         zhangjie_text=zhangjie_text.encode('utf-8')
+        zhangjie_text=base64.b64encode(zhangjie_text)
         file.write(zhangjie_text)
         file.close()
 
